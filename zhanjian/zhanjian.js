@@ -1,13 +1,12 @@
 var view = {
-  displayMessage: function(msg) {  //displayMessage是一个方法
+  displayMessage: function(msg) {  
     var messageArea = document.getElementById("messageArea");
     messageArea.innerHTML = msg;
 
   },
-  displayHit: function(location) { //location为td元素的id
+  displayHit: function(location) { 
     var cell = document.getElementById(location);
-    cell.setAttribute("class","hit");//增加指定的属性，并为它赋指定的值 
-     //hit为特性
+    cell.setAttribute("class","hit");
   },
   displayMiss: function(location) {
     var cell = document.getElementById(location);
@@ -24,21 +23,21 @@ var model = {
   shipsSunk: 0, 
   
   ships: [
-    {locations: [0,0,0],hits:["","",""]}, //locations存储了战舰占据的单元格
-    {locations: [0,0,0],hits:["","",""]},//hits指出战舰是否被击中
+    {locations: [0,0,0],hits:["","",""]},
+    {locations: [0,0,0],hits:["","",""]},
     {locations: [0,0,0],hits:["","",""]}],
   
     
   
   fire: function(guess){
     for(var i = 0; i<this.numShips; i++){
-      var ship = this.ships[i];//获取一个战舰
-      var index = ship.locations.indexOf(guess);// indexOf  为数组中的   guess作为索引 没有找到值就返回-1
-      if (index >=0){ //返回的值>=0说明玩家集中了战舰
-          ship.hits[index] = "hit";//将hits中的相应元素设置为“hit”
-          view.displayHit(guess); //是否击中了战舰
-          view.displayMessage("HIT!");//显示集中了战舰
-          if (this.isSunk(ship)) {//判断战舰是否被击中
+      var ship = this.ships[i];
+      var index = ship.locations.indexOf(guess);
+      if (index >=0){ 
+          ship.hits[index] = "hit";
+          view.displayHit(guess); 
+          view.displayMessage("HIT!");
+          if (this.isSunk(ship)) {
             view.displayMessage("You sank my battleship!");
             this.shipsSunk++;
           }
@@ -63,9 +62,9 @@ var model = {
     var locations;
     for (var i=0; i<this.numShips; i++){
        do{
-         locations = this.generateShip();//生成战舰占据的位置
-       }while (this.collision(locations));//判断战舰是否有重叠 如果重叠了就再次尝试
-       this.ships[i].locations = locations;//生成可行的战舰后把它赋值给model.ships中locations属性
+         locations = this.generateShip();
+       }while (this.collision(locations));
+       this.ships[i].locations = locations;
     }
   },
   generateShip: function() {
@@ -121,8 +120,8 @@ function parseGuess(guess){
   }
   return null;
 }
-//console.log(parseGuess("A0"));
-//console.log(parseGuess("G3"));
+
+
 var controller = {
   guesses: 0,
   processGuess: function(guess) {
@@ -133,11 +132,11 @@ var controller = {
       if (hit && model.shipsSunk === model.numShips) {
         view.displayMessage("You sank all my battleships, in "+this.guesses+"guesses");
       }
-      //返回值不是null即为有效
+      
     }
   }
 };
-//controller.processGuess("A0");
+
 function init() {
   var fireButton = document.getElementById("fireButton");
   fireButton.onclick = handleFireButton;
