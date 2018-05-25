@@ -7,7 +7,7 @@ div#board {
   width: 1024px;
   height: 863px;
   margin: auto;
-  background: url("pictures/board.jpg") no-repeat;
+  background: url("board.jpg") no-repeat;
 }
 div#messageArea {
     position: absolute;
@@ -30,15 +30,16 @@ form {
   bottom: 0px;
   right: 0px;
   padding: 15px;
-  background-color: rgb(83,175,113);
+  background-color: rgb(83,175,19);
 }
 form input{
-  background-color: rgb(83, 175, 19);
-  font-size: lem;
+  background-color: rgb(152, 207, 113);
+  border-color: rgb(83,175,19);
+  font-size: 1em;
 }
 .hit {
-  background: url("pictures/ship.png") no-repeat center center;
+  background: url("ship.png") no-repeat center center;
 }
 .miss {
-  background: url("pictures/miss.png") no-repeat center center;
+  background: url("miss.png") no-repeat center center;
 }
